@@ -25,4 +25,4 @@ SE 350 Project
   - Yes
 
 - **Where is the entry point to your project?**
-  - `src/main/Main.java`
+  - src/main/Main.java
