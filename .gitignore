@@ -1,4 +1,6 @@
-.vscode/
 bin/
 target/
+out/
 *.class
+.vscode/*
+!.vscode/settings.json
