@@ -6,7 +6,7 @@ import model.Book;
 
 public class LibraryCatalogTest {
 
-    // Tests that adding an item increases catalog size
+    // Adding an item should increase the catalog's size by one
     @Test
     public void testAddItemIncreasesCatalogSize() {
         LibraryCatalog catalog = LibraryCatalog.getInstance();
@@ -15,21 +15,22 @@ public class LibraryCatalogTest {
         Book book = new Book("Dune", "Frank Herbert", "0441172717");
         catalog.addItem(book);
 
-        // Verifies catalog grew by exactly one item
+        // Size should have grown by exactly one
         assertEquals(before + 1, catalog.getItems().size());
     }
 
-    // Tests that getInstance() always returns the same shared catalog (Singleton)
+    // getInstance() should always return the same shared instance (Singleton)
     @Test
     public void testGetInstanceReturnsSameObject() {
         LibraryCatalog first = LibraryCatalog.getInstance();
         LibraryCatalog second = LibraryCatalog.getInstance();
 
-        // Both references should point to the exact same object
+        // Both variables should reference the exact same object
         assertSame(first, second);
     }
 
-    // Tests that an item added through one reference is visible through another
+    // State added through one reference should be visible through another,
+    // proving both references point to the same shared catalog
     @Test
     public void testSingletonSharesStateAcrossReferences() {
         LibraryCatalog first = LibraryCatalog.getInstance();
@@ -38,7 +39,7 @@ public class LibraryCatalogTest {
 
         LibraryCatalog second = LibraryCatalog.getInstance();
 
-        // Item found through "second" even though it was added via "first"
+        // Book added via "first" is found through "second"
         assertEquals(book, second.findById("0451524934"));
     }
 }

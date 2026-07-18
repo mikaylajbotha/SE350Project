@@ -9,32 +9,32 @@ import factory.DVDFactory;
 import factory.ItemFactory;
 import model.Item;
 
-// Handles the command-line menu loop for the Library Checkout System
+// Command-line menu loop for the Library Checkout System
 public class MenuSystem {
 
-    // Always the same shared catalog (Singleton)
+    // Grabs the one shared catalog instance (Singleton)
     private final LibraryCatalog catalog = LibraryCatalog.getInstance();
 
-    // Seeds the catalog with a couple of sample items using the Factory Method
-    // pattern, so BookFactory/DVDFactory decide how each item gets built.
+    // Seeds the catalog with sample items via factories (Factory Method),
+    // so BookFactory/DVDFactory decide what concrete class gets built
     private void seedCatalog() {
         ItemFactory bookFactory = new BookFactory();
         ItemFactory dvdFactory = new DVDFactory();
 
-        catalog.addItem(bookFactory.createItem("The Hobbit", "J.R.R. Tolkien", "0345339681"));
-        catalog.addItem(dvdFactory.createItem("Inception", "Christopher Nolan", "DVD-1001"));
+        catalog.addItem(bookFactory.createItem("Siddhartha", "Hermann Hesse", "0345339681"));
+        catalog.addItem(dvdFactory.createItem("Aquamarine", "Elizabeth Allen Rosenbaum", "DVD-1001"));
     }
 
-    // Starts the menu and processes user choices
+    // Seeds the catalog, then runs the menu loop until the user exits
     public void start() {
         seedCatalog();
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
-        // Continues showing menu until user exits
+        // Loop until user chooses to exit
         while (running) {
-            // Display available menu options
+            // Print menu options
             System.out.println("\n--- Library Checkout System ---");
             System.out.println("1. Checkout item");
             System.out.println("2. Return item");
@@ -42,10 +42,10 @@ public class MenuSystem {
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
-            // Reads user input
+            // Read the user's choice
             String choice = scanner.nextLine();
 
-            // Handles selected menu option
+            // Route to the matching action
             switch (choice) {
                 case "1" -> System.out.println("Checkout feature coming soon.");
                 case "2" -> System.out.println("Return feature coming soon.");
@@ -58,7 +58,7 @@ public class MenuSystem {
         System.out.println("Goodbye!");
     }
 
-    // Lists everything currently in the shared catalog
+    // Prints every item currently in the shared catalog with its status
     private void printCatalog() {
         List<Item> items = catalog.getItems();
         System.out.println("\n--- Catalog (" + items.size() + " items) ---");

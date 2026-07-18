@@ -1,21 +1,21 @@
 package model;
 
-// Common interface for anything that can live in the library catalog
-// and be checked out/returned (Book, DVD, Magazine, etc.)
+// Shared contract for anything the catalog can hold and check out/return
+// Book, DVD, Magazine, etc. ItemFactory subclasses return this type.
 public interface Item {
 
-    // Unique identifier for the item (ISBN for books, catalog # for DVDs, etc.)
+    // Unique identifier (ISBN for books, catalog # for DVDs, etc.)
     String getId();
 
-    // Display title of the item
+    // Item's display title
     String getTitle();
 
-    // Whether the item is currently available to check out
+    // True if the item can currently be checked out
     boolean isAvailable();
 
-    // Updates the availability status
+    // Marks the item as checked out or returned
     void setAvailable(boolean available);
 
-    // Short label used by the menu/UI to describe the item type (e.g. "Book", "DVD")
+    // Type label used by the UI (e.g. "Book", "DVD")
     String getType();
 }
