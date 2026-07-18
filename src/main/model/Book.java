@@ -1,6 +1,6 @@
 package model;
 
-public class Book {
+public class Book implements Item {
     private String title;   
     private String author;
 
@@ -19,17 +19,28 @@ public class Book {
     }
 
      // Returns book title
+    @Override
     public String getTitle() { return title; }
 
      // Returns author name
     public String getAuthor() { return author; }
 
     // Returns Unique book identifier (ISBN)
+    @Override
+    public String getId() { return isbn; }
+
+    // Kept for backward compatibility with existing code/tests that call getIsbn()
     public String getIsbn() { return isbn; }
 
     // Checks if the book is available
+    @Override
     public boolean isAvailable() { return available; }
 
     // Updates the availability status
+    @Override
     public void setAvailable(boolean available) { this.available = available; }
+
+    // Identifies this item's type for the UI
+    @Override
+    public String getType() { return "Book"; }
 }
