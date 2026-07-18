@@ -8,19 +8,27 @@ public class BookTest {
     // Tests that a book is created with correct details
     @Test
     public void testBookCreation() {
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", "0345339681");
+        Book book = new Book("Siddhartha", "Hermann Hesse", "0345339681");
 
         // Checks title and author values
-        assertEquals("The Hobbit", book.getTitle());
-        assertEquals("J.R.R. Tolkien", book.getAuthor());
+        assertEquals("Siddhartha", book.getTitle());
+        assertEquals("Hermann Hesse", book.getAuthor());
     }
 
     // Tests that a new book is available by default
     @Test
     public void testBookIsAvailableByDefault() {
-        Book book = new Book("The Hobbit", "J.R.R. Tolkien", "0345339681");
+        Book book = new Book("Siddhartha", "Hermann Hesse", "0345339681");
 
         // Confirms book availability status
         assertTrue(book.isAvailable());
+    }
+
+    // Tests that Book correctly reports its type through the Item interface
+    @Test
+    public void testBookTypeIsBook() {
+        Book book = new Book("Siddhartha", "Hermann Hesse", "0345339681");
+
+        assertEquals("Book", book.getType());
     }
 }
